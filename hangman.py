@@ -217,13 +217,16 @@ def main(argv: list[str] | None = None) -> None:
     stats_path = Path(args.stats_file) if args.stats_file else default_stats_path()
     stats = load_stats(stats_path)
     print_banner(attempts)
-    while True:
-        won = play_round(choose_word(words, rng), attempts=attempts, color=use_color)
-        stats.record(won)
-        save_stats(stats, stats_path)
-        print(stats.summary())
-        if not wants_another_round():
-            break
+    try:
+        while True:
+            won = play_round(choose_word(words, rng), attempts=attempts, color=use_color)
+            stats.record(won)
+            save_stats(stats, stats_path)
+            print(stats.summary())
+            if not wants_another_round():
+                break
+    except (EOFError, KeyboardInterrupt):
+        print("\nGoodbye!")
 
 
 if __name__ == "__main__":

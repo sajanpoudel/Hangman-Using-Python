@@ -107,3 +107,12 @@ def test_show_stats_prints_the_saved_results_without_playing(tmp_path, capsys):
     stats_file.write_text('{"wins": 3, "losses": 1, "streak": 2, "best_streak": 2}')
     main(["--show-stats", "--stats-file", str(stats_file)])
     assert "Won 3 of 4 (75%)" in capsys.readouterr().out
+
+
+def test_main_says_goodbye_when_input_ends(tmp_path, capsys, monkeypatch):
+    def end_of_input(*args, **kwargs):
+        raise EOFError
+
+    monkeypatch.setattr("hangman.play_round", end_of_input)
+    main(["--stats-file", str(tmp_path / "stats.json"), "--seed", "1"])
+    assert "Goodbye!" in capsys.readouterr().out
