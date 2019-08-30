@@ -12,3 +12,8 @@ def test_no_misses_shows_the_empty_gallows():
 
 def test_all_attempts_used_shows_the_full_figure():
     assert gallows(6, 6) == STAGES[-1]
+
+
+def test_the_drawing_scales_to_the_attempts_allowed():
+    assert gallows(1, 2) == STAGES[3]
+    assert gallows(3, 3) == STAGES[-1]
