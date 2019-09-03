@@ -41,6 +41,7 @@ By Sajan Poudel.
 ```
 python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
                    [--category NAME] [--words-file PATH]
+                   [--min-length N] [--max-length N]
                    [--seed N] [--no-color]
 ```
 
@@ -61,6 +62,10 @@ python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
 ### Guessing the whole word
 
 Type the full word instead of a letter. A correct guess wins the round at once, a wrong one costs an attempt.
+
+### Word length
+
+`--min-length 6` and `--max-length 9` keep only words with that many letters. If no word fits, the game falls back to the full list.
 
 ### Hints
 

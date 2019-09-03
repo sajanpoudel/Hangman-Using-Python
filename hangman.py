@@ -164,6 +164,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--category", help="animals, places, nature or school")
     parser.add_argument("--words-file", help="text file with one word per line")
+    parser.add_argument("--min-length", type=int, help="shortest word to play")
+    parser.add_argument("--max-length", type=int, help="longest word to play")
     parser.add_argument("--seed", type=int, help="seed for the random word choice")
     parser.add_argument("--stats-file", help="where wins and losses are kept between sessions")
     parser.add_argument("--no-color", action="store_true", help="turn off coloured output")
@@ -176,13 +178,26 @@ def resolve_attempts(args: argparse.Namespace) -> int:
     return max(1, attempts)
 
 
+def filter_by_length(
+    words: list[str], minimum: int | None = None, maximum: int | None = None
+) -> list[str]:
+    """Keep the words whose length is within the given limits. Missing limits are ignored."""
+    low = minimum if minimum is not None else 0
+    high = maximum if maximum is not None else float("inf")
+    return [word for word in words if low <= len(word) <= high]
+
+
 def resolve_words(args: argparse.Namespace) -> list[str]:
-    """Words from --words-file, else from --category, else the full list."""
+    """Words from --words-file, else from --category, else the full list.
+
+    --min-length and --max-length then narrow the list down. When nothing is left
+    the unfiltered list is used so the game can always start.
+    """
+    words = words_for(args.category)
     if args.words_file:
-        words = load_words(args.words_file)
-        if words:
-            return words
-    return words_for(args.category)
+        words = load_words(args.words_file) or words
+    narrowed = filter_by_length(words, args.min_length, args.max_length)
+    return narrowed or words
 
 
 def main(argv: list[str] | None = None) -> None:
