@@ -8,27 +8,21 @@ from scores import Stats
 from words import WORDS, load_words, words_for
 
 
-def print_banner() -> None:
+BANNER_WIDTH = 103
+
+
+def banner_lines(width: int = BANNER_WIDTH) -> list[str]:
+    """Build the welcome box with every line of text centred between the borders."""
+    inner = width - 2
+    rows = ["WELCOME TO HANGMAN", "", "SAMPLE EXAMPLE BY SAJAN POUDEL", ""]
+    border = "*" * width
+    return [border] + ["*" + row.center(inner) + "*" for row in rows] + [border]
+
+
+def print_banner(attempts: int = 3) -> None:
     """Show the welcome message and the rules of the game."""
-    print(
-        "**********************************WELCOME TO HANGMAN***************************************************"
-    )
-    print(
-        "*                                                                                                     *"
-    )
-    print(
-        "*                            SAMPLE EXAMPLE BY SAJAN POUDEL                                           *"
-    )
-    print(
-        "*                                                                                                     *"
-    )
-    print(
-        "*                                                                                                     *"
-    )
-    print(
-        "*******************************************************************************************************"
-    )
-    print("\n\nYOU HAVE TO GUESS THE WORDS IN 3 attempts")
+    print("\n".join(banner_lines()))
+    print("\n\nYOU HAVE TO GUESS THE WORDS IN {} attempts".format(attempts))
 
 
 MAX_ATTEMPTS = 3
