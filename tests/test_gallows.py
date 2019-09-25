@@ -22,3 +22,9 @@ def test_the_drawing_scales_to_the_attempts_allowed():
 def test_misses_beyond_the_limit_are_clamped():
     assert gallows(99, 3) == STAGES[-1]
     assert gallows(-4, 3) == STAGES[0]
+
+
+def test_each_stage_draws_more_than_the_one_before():
+    drawn = [len(stage.replace(" ", "")) for stage in STAGES]
+    assert drawn == sorted(drawn)
+    assert len(set(drawn)) == len(drawn)
