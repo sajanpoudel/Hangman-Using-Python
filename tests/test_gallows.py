@@ -28,3 +28,7 @@ def test_each_stage_draws_more_than_the_one_before():
     drawn = [len(stage.replace(" ", "")) for stage in STAGES]
     assert drawn == sorted(drawn)
     assert len(set(drawn)) == len(drawn)
+
+
+def test_zero_allowed_attempts_shows_the_full_figure():
+    assert gallows(0, 0) == STAGES[-1]
