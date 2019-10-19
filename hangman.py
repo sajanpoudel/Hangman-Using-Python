@@ -75,7 +75,7 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
 
     say(board)  # show the empty board first
 
-    attempts_left = MAX_ATTEMPTS
+    attempts_left = attempts
     guessed = set()
 
     while attempts_left > 0 and board != word:
