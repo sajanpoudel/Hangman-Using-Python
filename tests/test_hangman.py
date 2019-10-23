@@ -131,3 +131,8 @@ def test_wants_another_round_accepts_yes_in_any_case():
 def test_wants_another_round_treats_everything_else_as_no():
     for answer in ["n", "no", "", "maybe"]:
         assert not wants_another_round(lambda prompt, a=answer: a)
+
+
+def test_more_attempts_allow_more_misses():
+    ask, say, _ = fake_io(["x", "y", "z", "q", "c", "a", "t"])
+    assert play_round("cat", ask, say, attempts=5) is True
