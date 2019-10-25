@@ -136,3 +136,8 @@ def test_wants_another_round_treats_everything_else_as_no():
 def test_more_attempts_allow_more_misses():
     ask, say, _ = fake_io(["x", "y", "z", "q", "c", "a", "t"])
     assert play_round("cat", ask, say, attempts=5) is True
+
+
+def test_a_single_attempt_ends_the_round_after_one_miss():
+    ask, say, _ = fake_io(["x"])
+    assert play_round("cat", ask, say, attempts=1) is False
