@@ -76,6 +76,11 @@ def pick_hint(word: list[str], board: list[str], rng: random.Random = random) ->
     return word[rng.choice(positions)]
 
 
+def unused_letters(guessed: set[str]) -> str:
+    """The letters of the alphabet that have not been tried yet, as one spaced string."""
+    return " ".join(letter for letter in "abcdefghijklmnopqrstuvwxyz" if letter not in guessed)
+
+
 def new_board(word: str | list[str]) -> list[str]:
     """Return a board of blanks as long as the word."""
     return [BLANK] * len(word)
@@ -142,6 +147,7 @@ def play_round(
         say(board)
         if guessed:
             say("Tried: {}".format(" ".join(sorted(guessed))))
+            say(f"Unused: {unused_letters(guessed)}")
 
     if board == word:
         say(paint(f"YOUR GUESS {chosen_word} WAS RIGHT: ", "green", color))

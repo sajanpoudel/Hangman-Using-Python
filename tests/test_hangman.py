@@ -18,6 +18,7 @@ from hangman import (
     pick_hint,
     play_round,
     reveal_letter,
+    unused_letters,
     wants_another_round,
 )
 
@@ -218,3 +219,16 @@ def test_tried_letters_are_listed_in_order():
     ask, say, output = fake_io(["t", "a", "x", "c"])
     play_round("cat", ask, say)
     assert "Tried: a c t x" in [str(line) for line in output]
+
+
+def test_unused_letters_skips_the_tried_ones():
+    remaining = unused_letters({"a", "e", "z"})
+    assert remaining.startswith("b c d f")
+    assert "a" not in remaining.split() and "z" not in remaining.split()
+    assert len(remaining.split()) == 23
+
+
+def test_round_output_lists_the_unused_letters():
+    ask, say, output = fake_io(["x", "c", "a", "t"])
+    assert play_round("cat", ask, say) is True
+    assert any(str(line).startswith("Unused: ") for line in output)
