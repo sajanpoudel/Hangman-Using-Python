@@ -2,6 +2,7 @@
 
 import random
 
+from gallows import gallows
 from words import WORDS
 
 
