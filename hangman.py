@@ -94,6 +94,7 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
             say("Wrong Word. Try Again ({} left)\n".format(attempts_left))
+            say(gallows(attempts - attempts_left, attempts))
 
         say(board)
 
