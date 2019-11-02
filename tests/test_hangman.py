@@ -141,3 +141,9 @@ def test_more_attempts_allow_more_misses():
 def test_a_single_attempt_ends_the_round_after_one_miss():
     ask, say, _ = fake_io(["x"])
     assert play_round("cat", ask, say, attempts=1) is False
+
+
+def test_the_gallows_is_drawn_after_a_miss():
+    ask, say, output = fake_io(["x", "c", "a", "t"])
+    play_round("cat", ask, say)
+    assert any("+---+" in str(line) for line in output)
