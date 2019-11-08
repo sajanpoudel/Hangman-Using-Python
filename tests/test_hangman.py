@@ -147,3 +147,9 @@ def test_the_gallows_is_drawn_after_a_miss():
     ask, say, output = fake_io(["x", "c", "a", "t"])
     play_round("cat", ask, say)
     assert any("+---+" in str(line) for line in output)
+
+
+def test_no_gallows_is_drawn_without_misses():
+    ask, say, output = fake_io(["c", "a", "t"])
+    play_round("cat", ask, say)
+    assert not any("+---+" in str(line) for line in output)
