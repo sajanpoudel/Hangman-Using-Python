@@ -32,6 +32,9 @@ def print_banner() -> None:
 MAX_ATTEMPTS = 3
 BLANK = "_"
 
+# Attempts allowed for each difficulty level.
+DIFFICULTIES = {"easy": 8, "normal": 6, "hard": 3}
+
 
 def reveal_letter(guess: str, word: list[str], board: list[str]) -> int:
     """Fill in every position of the board that matches the guess.
