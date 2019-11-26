@@ -59,6 +59,11 @@ def is_valid_guess(guess: str) -> bool:
     return len(guess) == 1 and guess.isalpha()
 
 
+def attempts_for(difficulty: str) -> int:
+    """Return the attempts for a difficulty level (unknown names count as normal)."""
+    return DIFFICULTIES.get(difficulty.lower(), DIFFICULTIES["normal"])
+
+
 def new_board(word: str | list[str]) -> list[str]:
     """Return a board of blanks as long as the word."""
     return [BLANK] * len(word)
