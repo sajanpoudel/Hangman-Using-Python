@@ -7,6 +7,8 @@ import random
 
 from hangman import (
     BLANK,
+    DIFFICULTIES,
+    attempts_for,
     WORDS,
     choose_word,
     is_valid_guess,
