@@ -1,3 +1,5 @@
+import string
+import random
 
 print("**********************************WELCOME TO HANGMAN***************************************************")
 print("*                                                                                                     *")
@@ -6,8 +8,6 @@ print("*                                                                        
 print("*                                                                                                     *")
 print("*******************************************************************************************************")
 print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
-import string
-import random
 userdata = ''
 
 def main():
