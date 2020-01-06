@@ -161,3 +161,8 @@ def test_attempts_for_known_levels():
     assert attempts_for("easy") == 8
     assert attempts_for("normal") == 6
     assert attempts_for("hard") == 3
+
+
+def test_attempts_for_ignores_case_and_defaults_to_normal():
+    assert attempts_for("EASY") == DIFFICULTIES["easy"]
+    assert attempts_for("impossible") == DIFFICULTIES["normal"]
