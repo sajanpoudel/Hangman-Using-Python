@@ -128,3 +128,11 @@ WORDS = [
     "wolf",
     "zoo",
 ]
+
+
+CATEGORIES = {
+    "animals": ["donkey", "monkey", "wolf", "species", "hunter"],
+    "places": ["egypt", "norway", "illinois", "pennsylvania", "philadelphia"],
+    "nature": ["autumn", "breeze", "solar", "canal", "mount"],
+    "school": ["mathematics", "university", "poetry", "selection", "discussion"],
+}
