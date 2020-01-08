@@ -1,22 +1,8 @@
 import string
 import random
 
-def print_banner():
-    """Show the welcome message and the rules of the game."""
-    print("**********************************WELCOME TO HANGMAN***************************************************")
-    print("*                                                                                                     *")
-    print("*                            SAMPLE EXAMPLE BY SAJAN POUDEL                                           *")
-    print("*                                                                                                     *")
-    print("*                                                                                                     *")
-    print("*******************************************************************************************************")
-    print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
-
-
-userdata = ''
-
-def main():
-
-    keywords = ['cres',
+WORDS = [
+    'cres',
     'adult',
     'advice',
     'arrangement',
@@ -141,7 +127,26 @@ def main():
     'vessels',
     'wealth',
     'wolf',
-    'zoo']
+    'zoo',
+]
+
+
+def print_banner():
+    """Show the welcome message and the rules of the game."""
+    print("**********************************WELCOME TO HANGMAN***************************************************")
+    print("*                                                                                                     *")
+    print("*                            SAMPLE EXAMPLE BY SAJAN POUDEL                                           *")
+    print("*                                                                                                     *")
+    print("*                                                                                                     *")
+    print("*******************************************************************************************************")
+    print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
+
+
+userdata = ''
+
+def main():
+
+    keywords = WORDS
    
     randomstring = random.choice(keywords)
     #print(randomstring)
