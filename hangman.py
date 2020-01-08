@@ -1,13 +1,17 @@
 import string
 import random
 
-print("**********************************WELCOME TO HANGMAN***************************************************")
-print("*                                                                                                     *")
-print("*                            SAMPLE EXAMPLE BY SAJAN POUDEL                                           *")
-print("*                                                                                                     *")
-print("*                                                                                                     *")
-print("*******************************************************************************************************")
-print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
+def print_banner():
+    """Show the welcome message and the rules of the game."""
+    print("**********************************WELCOME TO HANGMAN***************************************************")
+    print("*                                                                                                     *")
+    print("*                            SAMPLE EXAMPLE BY SAJAN POUDEL                                           *")
+    print("*                                                                                                     *")
+    print("*                                                                                                     *")
+    print("*******************************************************************************************************")
+    print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
+
+
 userdata = ''
 
 def main():
@@ -179,6 +183,7 @@ def main():
         print("NEXT TRY!!! \n the correct answer was: {}".format(randomstring))
     
 
+print_banner()
 main()
 
 
