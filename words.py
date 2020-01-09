@@ -136,3 +136,10 @@ CATEGORIES = {
     "nature": ["autumn", "breeze", "solar", "canal", "mount"],
     "school": ["mathematics", "university", "poetry", "selection", "discussion"],
 }
+
+
+def words_for(category: str | None) -> list[str]:
+    """Return the words of a category, or every word when the category is unknown or empty."""
+    if category and category.lower() in CATEGORIES:
+        return CATEGORIES[category.lower()]
+    return WORDS
