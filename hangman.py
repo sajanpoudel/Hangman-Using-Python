@@ -147,16 +147,13 @@ userdata = ''
 def main():
 
     keywords = WORDS
-   
+
     randomstring = random.choice(keywords)
     #print(randomstring)
-    res = []
-    res[:0]= randomstring
-    a = int((len(randomstring)))
+    res = list(randomstring)
+    a = len(randomstring)
     global userdata
-    e=[]
-    for i in range(a):
-        e.insert(i,'_')
+    e = ['_'] * a
 
     print(e) # Print The Empty Array at First
 
@@ -190,6 +187,3 @@ def main():
 
 print_banner()
 main()
-
-
- 
