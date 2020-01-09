@@ -144,6 +144,10 @@ def print_banner():
 
 userdata = ''
 
+MAX_ATTEMPTS = 3
+BLANK = '_'
+
+
 def main():
 
     keywords = WORDS
@@ -153,11 +157,11 @@ def main():
     res = list(randomstring)
     a = len(randomstring)
     global userdata
-    e = ['_'] * a
+    e = [BLANK] * a
 
     print(e) # Print The Empty Array at First
 
-    count=3 # attemp count to complete the puzzle 
+    count = MAX_ATTEMPTS # attempts left to complete the puzzle
 
     while(count>0):
         if(e == res):
