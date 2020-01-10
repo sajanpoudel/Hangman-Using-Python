@@ -148,46 +148,44 @@ MAX_ATTEMPTS = 3
 BLANK = '_'
 
 
+MAX_ATTEMPTS = 3
+BLANK = '_'
+
+
 def main():
 
-    keywords = WORDS
-
-    randomstring = random.choice(keywords)
-    #print(randomstring)
+    randomstring = random.choice(WORDS)
     res = list(randomstring)
     a = len(randomstring)
-    global userdata
     e = [BLANK] * a
 
     print(e) # Print The Empty Array at First
 
     count = MAX_ATTEMPTS # attempts left to complete the puzzle
 
-    while(count>0):
-        if(e == res):
+    while count > 0:
+        if e == res:
             break
         else:
-            userdata = (input("\nPLEASE GUESS THE WORD > "))
-            truecount=0
+            userdata = input("\nPLEASE GUESS THE WORD > ")
+            truecount = 0
             for i in range(a):
-                if(res[i]==userdata):
-                    e[i]=userdata
-                    truecount= truecount + 1              
-            
-            if(truecount<1):
-                count=count-1
-                print('Worng Word. Try Again \n')                          
-               
-            truecount=0
+                if res[i] == userdata:
+                    e[i] = userdata
+                    truecount = truecount + 1
+
+            if truecount < 1:
+                count = count - 1
+                print('Worng Word. Try Again \n')
+
             print(e)
 
-       
-    if (e == res):
+    if e == res:
         print("YOUR GUESS {} WAS RIGHT: ".format(randomstring))
-    
+
     else:
         print("NEXT TRY!!! \n the correct answer was: {}".format(randomstring))
-    
+
 
 print_banner()
 main()
