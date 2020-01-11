@@ -142,12 +142,6 @@ def print_banner():
     print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
 
 
-userdata = ''
-
-MAX_ATTEMPTS = 3
-BLANK = '_'
-
-
 MAX_ATTEMPTS = 3
 BLANK = '_'
 
