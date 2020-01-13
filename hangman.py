@@ -146,39 +146,41 @@ MAX_ATTEMPTS = 3
 BLANK = '_'
 
 
+def reveal_letter(guess, word, board):
+    """Fill in every position of the board that matches the guess.
+
+    Returns the number of positions that were revealed.
+    """
+    revealed = 0
+    for position, letter in enumerate(word):
+        if letter == guess:
+            board[position] = guess
+            revealed += 1
+    return revealed
+
+
 def main():
+    chosen_word = random.choice(WORDS)
+    word = list(chosen_word)
+    board = [BLANK] * len(word)
 
-    randomstring = random.choice(WORDS)
-    res = list(randomstring)
-    a = len(randomstring)
-    e = [BLANK] * a
+    print(board)  # show the empty board first
 
-    print(e) # Print The Empty Array at First
+    attempts_left = MAX_ATTEMPTS
 
-    count = MAX_ATTEMPTS # attempts left to complete the puzzle
+    while attempts_left > 0 and board != word:
+        guess = input("\nPLEASE GUESS THE WORD > ")
 
-    while count > 0:
-        if e == res:
-            break
-        else:
-            userdata = input("\nPLEASE GUESS THE WORD > ")
-            truecount = 0
-            for i in range(a):
-                if res[i] == userdata:
-                    e[i] = userdata
-                    truecount = truecount + 1
+        if reveal_letter(guess, word, board) == 0:
+            attempts_left -= 1
+            print('Worng Word. Try Again \n')
 
-            if truecount < 1:
-                count = count - 1
-                print('Worng Word. Try Again \n')
+        print(board)
 
-            print(e)
-
-    if e == res:
-        print("YOUR GUESS {} WAS RIGHT: ".format(randomstring))
-
+    if board == word:
+        print("YOUR GUESS {} WAS RIGHT: ".format(chosen_word))
     else:
-        print("NEXT TRY!!! \n the correct answer was: {}".format(randomstring))
+        print("NEXT TRY!!! \n the correct answer was: {}".format(chosen_word))
 
 
 print_banner()
