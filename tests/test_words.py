@@ -8,3 +8,7 @@ from words import CATEGORIES, WORDS, words_for
 
 def test_words_for_a_known_category():
     assert words_for("animals") == CATEGORIES["animals"]
+
+
+def test_words_for_ignores_case():
+    assert words_for("ANIMALS") == CATEGORIES["animals"]
