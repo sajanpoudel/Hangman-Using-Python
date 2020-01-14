@@ -81,7 +81,7 @@ WORDS = [
     'philadelphia',
     'plates',
     'poetry',
-    'policema',
+    'policeman',
     'positive',
     'possibly',
     'practical',
@@ -139,7 +139,7 @@ def print_banner():
     print("*                                                                                                     *")
     print("*                                                                                                     *")
     print("*******************************************************************************************************")
-    print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempt")
+    print("\n""\n" "YOU HAVE TO GUESS THE WORDS IN 3 attempts")
 
 
 MAX_ATTEMPTS = 3
@@ -173,7 +173,7 @@ def main():
 
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
-            print('Worng Word. Try Again \n')
+            print('Wrong Word. Try Again \n')
 
         print(board)
 
