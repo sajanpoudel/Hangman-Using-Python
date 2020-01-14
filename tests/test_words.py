@@ -12,3 +12,9 @@ def test_words_for_a_known_category():
 
 def test_words_for_ignores_case():
     assert words_for("ANIMALS") == CATEGORIES["animals"]
+
+
+def test_words_for_falls_back_to_every_word():
+    assert words_for("nonsense") == WORDS
+    assert words_for(None) == WORDS
+    assert words_for("") == WORDS
