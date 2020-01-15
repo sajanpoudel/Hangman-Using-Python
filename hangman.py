@@ -1,3 +1,5 @@
+"""A small command line Hangman game."""
+
 import string
 import random
 
@@ -160,6 +162,7 @@ def reveal_letter(guess, word, board):
 
 
 def main():
+    """Play one round: pick a random word and let the player guess letters."""
     chosen_word = random.choice(WORDS)
     word = list(chosen_word)
     board = [BLANK] * len(word)
@@ -183,5 +186,6 @@ def main():
         print("NEXT TRY!!! \n the correct answer was: {}".format(chosen_word))
 
 
-print_banner()
-main()
+if __name__ == "__main__":
+    print_banner()
+    main()
