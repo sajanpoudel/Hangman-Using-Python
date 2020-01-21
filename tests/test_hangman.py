@@ -11,3 +11,10 @@ def test_reveal_letter_fills_the_matching_position():
     board = [BLANK] * 3
     assert reveal_letter("a", word, board) == 1
     assert board == [BLANK, "a", BLANK]
+
+
+def test_reveal_letter_fills_every_repeated_letter():
+    word = list("banana")
+    board = [BLANK] * 6
+    assert reveal_letter("a", word, board) == 3
+    assert board == [BLANK, "a", BLANK, "a", BLANK, "a"]
