@@ -18,3 +18,10 @@ def test_reveal_letter_fills_every_repeated_letter():
     board = [BLANK] * 6
     assert reveal_letter("a", word, board) == 3
     assert board == [BLANK, "a", BLANK, "a", BLANK, "a"]
+
+
+def test_reveal_letter_returns_zero_for_a_miss():
+    word = list("cat")
+    board = [BLANK] * 3
+    assert reveal_letter("z", word, board) == 0
+    assert board == [BLANK] * 3
