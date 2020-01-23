@@ -32,3 +32,8 @@ def test_reveal_letter_keeps_letters_found_earlier():
     board = ["c", BLANK, BLANK]
     reveal_letter("t", word, board)
     assert board == ["c", BLANK, "t"]
+
+
+def test_new_board_has_one_blank_per_letter():
+    assert new_board("hello") == [BLANK] * 5
+    assert new_board("") == []
