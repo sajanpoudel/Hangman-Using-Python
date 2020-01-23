@@ -3,7 +3,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from hangman import BLANK, reveal_letter
+from hangman import BLANK, new_board, reveal_letter
 
 
 def test_reveal_letter_fills_the_matching_position():
