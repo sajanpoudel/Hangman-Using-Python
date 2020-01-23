@@ -173,11 +173,16 @@ def reveal_letter(guess, word, board):
     return revealed
 
 
+def new_board(word):
+    """Return a board of blanks as long as the word."""
+    return [BLANK] * len(word)
+
+
 def main():
     """Play one round: pick a random word and let the player guess letters."""
     chosen_word = random.choice(WORDS)
     word = list(chosen_word)
-    board = [BLANK] * len(word)
+    board = new_board(word)
 
     print(board)  # show the empty board first
 
