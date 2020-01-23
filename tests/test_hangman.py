@@ -25,3 +25,10 @@ def test_reveal_letter_returns_zero_for_a_miss():
     board = [BLANK] * 3
     assert reveal_letter("z", word, board) == 0
     assert board == [BLANK] * 3
+
+
+def test_reveal_letter_keeps_letters_found_earlier():
+    word = list("cat")
+    board = ["c", BLANK, BLANK]
+    reveal_letter("t", word, board)
+    assert board == ["c", BLANK, "t"]
