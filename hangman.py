@@ -178,9 +178,14 @@ def new_board(word):
     return [BLANK] * len(word)
 
 
+def choose_word(words=WORDS, rng=random):
+    """Pick the word for a round. A different rng makes the choice repeatable."""
+    return rng.choice(words)
+
+
 def main():
     """Play one round: pick a random word and let the player guess letters."""
-    chosen_word = random.choice(WORDS)
+    chosen_word = choose_word()
     word = list(chosen_word)
     board = new_board(word)
 
