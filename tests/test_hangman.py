@@ -39,3 +39,14 @@ def test_reveal_letter_keeps_letters_found_earlier():
 def test_new_board_has_one_blank_per_letter():
     assert new_board("hello") == [BLANK] * 5
     assert new_board("") == []
+
+
+def test_choose_word_comes_from_the_list():
+    assert choose_word(["only"]) == "only"
+
+
+def test_choose_word_is_repeatable_with_a_seeded_rng():
+    first = choose_word(WORDS, random.Random(7))
+    second = choose_word(WORDS, random.Random(7))
+    assert first == second
+    assert first in WORDS
