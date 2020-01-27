@@ -3,7 +3,9 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from hangman import BLANK, new_board, reveal_letter
+import random
+
+from hangman import BLANK, WORDS, choose_word, new_board, reveal_letter
 
 
 def test_reveal_letter_fills_the_matching_position():
