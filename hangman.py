@@ -173,6 +173,16 @@ def reveal_letter(guess, word, board):
     return revealed
 
 
+def normalize_guess(text):
+    """Lowercase the guess and drop the spaces around it."""
+    return text.strip().lower()
+
+
+def is_valid_guess(guess):
+    """A guess is valid when it is a single letter."""
+    return len(guess) == 1 and guess.isalpha()
+
+
 def new_board(word):
     """Return a board of blanks as long as the word."""
     return [BLANK] * len(word)
