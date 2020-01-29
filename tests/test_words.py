@@ -18,3 +18,8 @@ def test_words_for_falls_back_to_every_word():
     assert words_for("nonsense") == WORDS
     assert words_for(None) == WORDS
     assert words_for("") == WORDS
+
+
+def test_category_words_are_in_the_full_list():
+    for words in CATEGORIES.values():
+        assert set(words) <= set(WORDS)
