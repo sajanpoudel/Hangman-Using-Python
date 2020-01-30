@@ -5,7 +5,15 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import random
 
-from hangman import BLANK, WORDS, choose_word, new_board, reveal_letter
+from hangman import (
+    BLANK,
+    WORDS,
+    choose_word,
+    is_valid_guess,
+    new_board,
+    normalize_guess,
+    reveal_letter,
+)
 
 
 def test_reveal_letter_fills_the_matching_position():
