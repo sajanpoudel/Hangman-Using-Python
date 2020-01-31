@@ -58,3 +58,7 @@ def test_choose_word_is_repeatable_with_a_seeded_rng():
     second = choose_word(WORDS, random.Random(7))
     assert first == second
     assert first in WORDS
+
+
+def test_normalize_guess_lowercases_and_strips():
+    assert normalize_guess("  A ") == "a"
