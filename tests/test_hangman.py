@@ -62,3 +62,8 @@ def test_choose_word_is_repeatable_with_a_seeded_rng():
 
 def test_normalize_guess_lowercases_and_strips():
     assert normalize_guess("  A ") == "a"
+
+
+def test_is_valid_guess_accepts_one_letter():
+    assert is_valid_guess("a")
+    assert is_valid_guess("Z")
