@@ -67,3 +67,8 @@ def test_normalize_guess_lowercases_and_strips():
 def test_is_valid_guess_accepts_one_letter():
     assert is_valid_guess("a")
     assert is_valid_guess("Z")
+
+
+def test_is_valid_guess_rejects_other_input():
+    for bad in ["", "ab", "1", " ", "!"]:
+        assert not is_valid_guess(bad)
