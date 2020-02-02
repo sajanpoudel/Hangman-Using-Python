@@ -193,29 +193,37 @@ def choose_word(words=WORDS, rng=random):
     return rng.choice(words)
 
 
-def main():
-    """Play one round: pick a random word and let the player guess letters."""
-    chosen_word = choose_word()
+def play_round(chosen_word, ask=input, say=print):
+    """Run one round for chosen_word and return True when the player wins.
+
+    ask and say can be replaced, which makes the round testable without a keyboard.
+    """
     word = list(chosen_word)
     board = new_board(word)
 
-    print(board)  # show the empty board first
+    say(board)  # show the empty board first
 
     attempts_left = MAX_ATTEMPTS
 
     while attempts_left > 0 and board != word:
-        guess = input("\nPLEASE GUESS THE WORD > ")
+        guess = ask("\nPLEASE GUESS THE WORD > ")
 
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
-            print("Wrong Word. Try Again \n")
+            say("Wrong Word. Try Again \n")
 
-        print(board)
+        say(board)
 
     if board == word:
-        print("YOUR GUESS {} WAS RIGHT: ".format(chosen_word))
-    else:
-        print("NEXT TRY!!! \n the correct answer was: {}".format(chosen_word))
+        say("YOUR GUESS {} WAS RIGHT: ".format(chosen_word))
+        return True
+    say("NEXT TRY!!! \n the correct answer was: {}".format(chosen_word))
+    return False
+
+
+def main():
+    """Play one round: pick a random word and let the player guess letters."""
+    play_round(choose_word())
 
 
 if __name__ == "__main__":
