@@ -12,6 +12,7 @@ from hangman import (
     is_valid_guess,
     new_board,
     normalize_guess,
+    play_round,
     reveal_letter,
 )
 
