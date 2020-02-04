@@ -73,3 +73,10 @@ def test_is_valid_guess_accepts_one_letter():
 def test_is_valid_guess_rejects_other_input():
     for bad in ["", "ab", "1", " ", "!"]:
         assert not is_valid_guess(bad)
+
+
+def fake_io(answers):
+    """Return an ask function fed from answers and a list that collects the output."""
+    queue = iter(answers)
+    output = []
+    return (lambda prompt: next(queue)), output.append, output
