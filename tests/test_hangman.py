@@ -80,3 +80,9 @@ def fake_io(answers):
     queue = iter(answers)
     output = []
     return (lambda prompt: next(queue)), output.append, output
+
+
+def test_play_round_is_won_when_every_letter_is_found():
+    ask, say, output = fake_io(["c", "a", "t"])
+    assert play_round("cat", ask, say) is True
+    assert any("WAS RIGHT" in str(line) for line in output)
