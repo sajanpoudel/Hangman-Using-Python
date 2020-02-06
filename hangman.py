@@ -206,7 +206,7 @@ def play_round(chosen_word, ask=input, say=print):
     attempts_left = MAX_ATTEMPTS
 
     while attempts_left > 0 and board != word:
-        guess = ask("\nPLEASE GUESS THE WORD > ")
+        guess = normalize_guess(ask("\nPLEASE GUESS THE WORD > "))
 
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
