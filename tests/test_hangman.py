@@ -92,3 +92,8 @@ def test_play_round_is_lost_after_three_wrong_guesses():
     ask, say, output = fake_io(["x", "y", "z"])
     assert play_round("cat", ask, say) is False
     assert any("the correct answer was: cat" in str(line) for line in output)
+
+
+def test_wrong_guesses_are_counted_but_right_ones_are_free():
+    ask, say, _ = fake_io(["x", "c", "y", "a", "t"])
+    assert play_round("cat", ask, say) is True
