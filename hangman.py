@@ -208,6 +208,10 @@ def play_round(chosen_word, ask=input, say=print):
     while attempts_left > 0 and board != word:
         guess = normalize_guess(ask("\nPLEASE GUESS THE WORD > "))
 
+        if not is_valid_guess(guess):
+            say("Please enter a single letter.")
+            continue
+
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
             say("Wrong Word. Try Again \n")
