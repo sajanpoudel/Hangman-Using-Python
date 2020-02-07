@@ -23,3 +23,8 @@ def test_words_for_falls_back_to_every_word():
 def test_category_words_are_in_the_full_list():
     for words in CATEGORIES.values():
         assert set(words) <= set(WORDS)
+
+
+def test_every_word_is_lowercase_letters():
+    for word in WORDS:
+        assert word.isalpha() and word == word.lower(), word
