@@ -97,3 +97,8 @@ def test_play_round_is_lost_after_three_wrong_guesses():
 def test_wrong_guesses_are_counted_but_right_ones_are_free():
     ask, say, _ = fake_io(["x", "c", "y", "a", "t"])
     assert play_round("cat", ask, say) is True
+
+
+def test_upper_case_guesses_count():
+    ask, say, _ = fake_io(["C", "A", "T"])
+    assert play_round("cat", ask, say) is True
