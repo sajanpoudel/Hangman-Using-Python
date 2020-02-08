@@ -102,3 +102,9 @@ def test_wrong_guesses_are_counted_but_right_ones_are_free():
 def test_upper_case_guesses_count():
     ask, say, _ = fake_io(["C", "A", "T"])
     assert play_round("cat", ask, say) is True
+
+
+def test_invalid_guesses_do_not_use_up_attempts():
+    ask, say, output = fake_io(["", "12", "ab", "c", "a", "t"])
+    assert play_round("cat", ask, say) is True
+    assert sum("single letter" in str(line) for line in output) == 3
