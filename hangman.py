@@ -204,6 +204,7 @@ def play_round(chosen_word, ask=input, say=print):
     say(board)  # show the empty board first
 
     attempts_left = MAX_ATTEMPTS
+    guessed = set()
 
     while attempts_left > 0 and board != word:
         guess = normalize_guess(ask("\nPLEASE GUESS THE WORD > "))
