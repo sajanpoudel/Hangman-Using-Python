@@ -213,6 +213,11 @@ def play_round(chosen_word, ask=input, say=print):
             say("Please enter a single letter.")
             continue
 
+        if guess in guessed:
+            say("You already tried '{}'.".format(guess))
+            continue
+        guessed.add(guess)
+
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
             say("Wrong Word. Try Again \n")
