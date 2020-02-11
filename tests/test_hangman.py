@@ -108,3 +108,9 @@ def test_invalid_guesses_do_not_use_up_attempts():
     ask, say, output = fake_io(["", "12", "ab", "c", "a", "t"])
     assert play_round("cat", ask, say) is True
     assert sum("single letter" in str(line) for line in output) == 3
+
+
+def test_repeating_a_wrong_letter_is_not_charged_twice():
+    ask, say, output = fake_io(["x", "x", "y", "c", "a", "t"])
+    assert play_round("cat", ask, say) is True
+    assert any("already tried" in str(line) for line in output)
