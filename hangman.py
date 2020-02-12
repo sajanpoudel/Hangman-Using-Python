@@ -220,7 +220,7 @@ def play_round(chosen_word, ask=input, say=print):
 
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
-            say("Wrong Word. Try Again \n")
+            say("Wrong Word. Try Again ({} left)\n".format(attempts_left))
 
         say(board)
 
