@@ -114,3 +114,9 @@ def test_repeating_a_wrong_letter_is_not_charged_twice():
     ask, say, output = fake_io(["x", "x", "y", "c", "a", "t"])
     assert play_round("cat", ask, say) is True
     assert any("already tried" in str(line) for line in output)
+
+
+def test_wrong_guess_message_shows_the_attempts_left():
+    ask, say, output = fake_io(["x", "c", "a", "t"])
+    play_round("cat", ask, say)
+    assert any("2 left" in str(line) for line in output)
