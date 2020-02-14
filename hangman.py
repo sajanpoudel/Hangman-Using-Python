@@ -1,6 +1,5 @@
 """A small command line Hangman game."""
 
-import string
 import random
 
 from words import WORDS
