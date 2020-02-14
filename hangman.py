@@ -103,9 +103,17 @@ def play_round(chosen_word, ask=input, say=print):
     return False
 
 
+def wants_another_round(ask=input):
+    """Ask the player whether to play again."""
+    return ask("\nPlay again? (y/n) > ").strip().lower().startswith("y")
+
+
 def main():
-    """Play one round: pick a random word and let the player guess letters."""
-    play_round(choose_word())
+    """Play rounds until the player decides to stop."""
+    while True:
+        play_round(choose_word())
+        if not wants_another_round():
+            break
 
 
 if __name__ == "__main__":
