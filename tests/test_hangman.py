@@ -121,3 +121,8 @@ def test_wrong_guess_message_shows_the_attempts_left():
     ask, say, output = fake_io(["x", "c", "a", "t"])
     play_round("cat", ask, say)
     assert any("2 left" in str(line) for line in output)
+
+
+def test_wants_another_round_accepts_yes_in_any_case():
+    for answer in ["y", "Y", "yes", " Yes "]:
+        assert wants_another_round(lambda prompt, a=answer: a)
