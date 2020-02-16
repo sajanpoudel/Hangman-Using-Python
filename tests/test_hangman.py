@@ -14,6 +14,7 @@ from hangman import (
     normalize_guess,
     play_round,
     reveal_letter,
+    wants_another_round,
 )
 
 
