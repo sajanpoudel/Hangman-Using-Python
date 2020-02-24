@@ -126,3 +126,8 @@ def test_wrong_guess_message_shows_the_attempts_left():
 def test_wants_another_round_accepts_yes_in_any_case():
     for answer in ["y", "Y", "yes", " Yes "]:
         assert wants_another_round(lambda prompt, a=answer: a)
+
+
+def test_wants_another_round_treats_everything_else_as_no():
+    for answer in ["n", "no", "", "maybe"]:
+        assert not wants_another_round(lambda prompt, a=answer: a)
