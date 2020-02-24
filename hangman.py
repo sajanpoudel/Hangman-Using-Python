@@ -32,7 +32,7 @@ MAX_ATTEMPTS = 3
 BLANK = "_"
 
 
-def reveal_letter(guess, word, board):
+def reveal_letter(guess: str, word: list[str], board: list[str]) -> int:
     """Fill in every position of the board that matches the guess.
 
     Returns the number of positions that were revealed.
