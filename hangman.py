@@ -55,7 +55,7 @@ def is_valid_guess(guess):
     return len(guess) == 1 and guess.isalpha()
 
 
-def new_board(word):
+def new_board(word: str | list[str]) -> list[str]:
     """Return a board of blanks as long as the word."""
     return [BLANK] * len(word)
 
