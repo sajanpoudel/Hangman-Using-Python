@@ -45,7 +45,7 @@ def reveal_letter(guess: str, word: list[str], board: list[str]) -> int:
     return revealed
 
 
-def normalize_guess(text):
+def normalize_guess(text: str) -> str:
     """Lowercase the guess and drop the spaces around it."""
     return text.strip().lower()
 
