@@ -28,3 +28,8 @@ def test_category_words_are_in_the_full_list():
 def test_every_word_is_lowercase_letters():
     for word in WORDS:
         assert word.isalpha() and word == word.lower(), word
+
+
+def test_categories_have_no_duplicates():
+    for words in CATEGORIES.values():
+        assert len(words) == len(set(words))
