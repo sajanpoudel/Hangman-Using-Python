@@ -50,7 +50,7 @@ def normalize_guess(text: str) -> str:
     return text.strip().lower()
 
 
-def is_valid_guess(guess):
+def is_valid_guess(guess: str) -> bool:
     """A guess is valid when it is a single letter."""
     return len(guess) == 1 and guess.isalpha()
 
