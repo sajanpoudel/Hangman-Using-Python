@@ -60,7 +60,7 @@ def new_board(word: str | list[str]) -> list[str]:
     return [BLANK] * len(word)
 
 
-def choose_word(words=WORDS, rng=random):
+def choose_word(words: list[str] = WORDS, rng: random.Random = random) -> str:
     """Pick the word for a round. A different rng makes the choice repeatable."""
     return rng.choice(words)
 
