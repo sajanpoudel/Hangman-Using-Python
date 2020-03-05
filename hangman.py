@@ -103,7 +103,7 @@ def play_round(chosen_word: str, ask=input, say=print) -> bool:
     return False
 
 
-def wants_another_round(ask=input):
+def wants_another_round(ask=input) -> bool:
     """Ask the player whether to play again."""
     return ask("\nPlay again? (y/n) > ").strip().lower().startswith("y")
 
