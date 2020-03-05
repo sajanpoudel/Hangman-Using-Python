@@ -40,6 +40,11 @@ class Stats:
         )
 
 
+def default_stats_path() -> Path:
+    """Where the stats are kept unless --stats-file says otherwise."""
+    return Path.home() / ".hangman_stats.json"
+
+
 def load_stats(path: Path) -> Stats:
     """Read saved stats, starting fresh when the file is missing or unreadable."""
     try:

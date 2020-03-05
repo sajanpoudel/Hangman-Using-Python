@@ -2,9 +2,10 @@
 
 import argparse
 import random
+from pathlib import Path
 
 from gallows import gallows
-from scores import Stats
+from scores import default_stats_path, load_stats, save_stats
 from words import WORDS, load_words, words_for
 
 
@@ -150,6 +151,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--category", help="animals, places, nature or school")
     parser.add_argument("--words-file", help="text file with one word per line")
     parser.add_argument("--seed", type=int, help="seed for the random word choice")
+    parser.add_argument("--stats-file", help="where wins and losses are kept between sessions")
     parser.add_argument("--no-color", action="store_true", help="turn off coloured output")
     return parser
 
@@ -175,15 +177,17 @@ def main(argv: list[str] | None = None) -> None:
     rng = random.Random(args.seed) if args.seed is not None else random
     attempts = resolve_attempts(args)
     words = resolve_words(args)
-    stats = Stats()
+    stats_path = Path(args.stats_file) if args.stats_file else default_stats_path()
+    stats = load_stats(stats_path)
+    print_banner(attempts)
     while True:
         won = play_round(choose_word(words, rng), attempts=attempts)
         stats.record(won)
+        save_stats(stats, stats_path)
         print(stats.summary())
         if not wants_another_round():
             break
 
 
 if __name__ == "__main__":
-    print_banner()
     main()
