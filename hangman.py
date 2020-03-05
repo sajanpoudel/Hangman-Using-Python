@@ -65,7 +65,7 @@ def choose_word(words: list[str] = WORDS, rng: random.Random = random) -> str:
     return rng.choice(words)
 
 
-def play_round(chosen_word, ask=input, say=print):
+def play_round(chosen_word: str, ask=input, say=print) -> bool:
     """Run one round for chosen_word and return True when the player wins.
 
     ask and say can be replaced, which makes the round testable without a keyboard.
