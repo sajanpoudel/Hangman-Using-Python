@@ -5,7 +5,7 @@ import random
 from words import WORDS
 
 
-def print_banner():
+def print_banner() -> None:
     """Show the welcome message and the rules of the game."""
     print(
         "**********************************WELCOME TO HANGMAN***************************************************"
