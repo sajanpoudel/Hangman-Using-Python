@@ -18,4 +18,11 @@ No third party packages are needed.
 - `reveal_letter()` fills the board with every position that matches a guess.
 - `MAX_ATTEMPTS` controls how many wrong guesses are allowed.
 
+## Rules
+
+- A random word is chosen and shown as blanks.
+- Type one letter per turn. Correct letters are revealed everywhere they appear.
+- A wrong letter costs one of your three attempts. Repeated letters and invalid input are free.
+- After a round you can choose to play again.
+
 By Sajan Poudel.
