@@ -12,6 +12,13 @@ python3 hangman.py
 
 No third party packages are needed.
 
+## Tests
+
+```
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## How it works
 
 - `WORDS` holds the words the game can choose from.
