@@ -24,6 +24,8 @@ pytest
 - `WORDS` holds the words the game can choose from.
 - `reveal_letter()` fills the board with every position that matches a guess.
 - `MAX_ATTEMPTS` controls how many wrong guesses are allowed.
+- `play_round()` runs one round and takes replaceable input and output functions, which the tests use.
+- `words.py` holds the word list.
 
 ## Rules
 
