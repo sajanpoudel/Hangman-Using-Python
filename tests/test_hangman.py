@@ -232,3 +232,15 @@ def test_round_output_lists_the_unused_letters():
     ask, say, output = fake_io(["x", "c", "a", "t"])
     assert play_round("cat", ask, say) is True
     assert any(str(line).startswith("Unused: ") for line in output)
+
+
+def test_hints_are_limited_per_round():
+    ask, say, output = fake_io(["?", "?", "?", "x", "y", "z", "q", "w", "v"])
+    play_round("abcdefgh", ask, say, attempts=8, max_hints=2)
+    assert any("all 2 hints" in str(line) for line in output)
+
+
+def test_zero_hints_turns_the_hint_command_off():
+    ask, say, output = fake_io(["?", "a"])
+    play_round("a", ask, say, attempts=3, max_hints=0)
+    assert any("all 0 hints" in str(line) for line in output)

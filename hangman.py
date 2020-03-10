@@ -30,6 +30,7 @@ def print_banner(attempts: int = 3) -> None:
 MAX_ATTEMPTS = 3
 BLANK = "_"
 HINT_COMMAND = "?"
+MAX_HINTS = 2
 
 # Attempts allowed for each difficulty level.
 DIFFICULTIES = {"easy": 8, "normal": 6, "hard": 3}
@@ -92,7 +93,12 @@ def choose_word(words: list[str] = WORDS, rng: random.Random = random) -> str:
 
 
 def play_round(
-    chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEMPTS, color: bool = False
+    chosen_word: str,
+    ask=input,
+    say=print,
+    attempts: int = MAX_ATTEMPTS,
+    color: bool = False,
+    max_hints: int = MAX_HINTS,
 ) -> bool:
     """Run one round for chosen_word and return True when the player wins.
 
@@ -105,16 +111,21 @@ def play_round(
 
     attempts_left = attempts
     guessed = set()
+    hints_used = 0
 
     while attempts_left > 0 and board != word:
         guess = normalize_guess(ask("\nPLEASE GUESS THE WORD > "))
 
         if guess == HINT_COMMAND:
+            if hints_used >= max_hints:
+                say(f"You have used all {max_hints} hints.")
+                continue
             if attempts_left <= 1:
                 say("No hints on your last attempt.")
                 continue
             hint = pick_hint(word, board)
             attempts_left -= 1
+            hints_used += 1
             guessed.add(hint)
             reveal_letter(hint, word, board)
             say(f"Hint: '{hint}' ({attempts_left} left)")
@@ -170,6 +181,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--category", help="animals, places, nature or school")
     parser.add_argument("--words-file", help="text file with one word per line")
+    parser.add_argument(
+        "--hints", type=int, default=MAX_HINTS, help="hints allowed per round (default 2)"
+    )
     parser.add_argument("--min-length", type=int, help="shortest word to play")
     parser.add_argument("--max-length", type=int, help="longest word to play")
     parser.add_argument("--seed", type=int, help="seed for the random word choice")
@@ -225,7 +239,12 @@ def main(argv: list[str] | None = None) -> None:
     print_banner(attempts)
     try:
         while True:
-            won = play_round(choose_word(words, rng), attempts=attempts, color=use_color)
+            won = play_round(
+                choose_word(words, rng),
+                attempts=attempts,
+                color=use_color,
+                max_hints=max(0, args.hints),
+            )
             stats.record(won)
             save_stats(stats, stats_path)
             print(stats.summary())
