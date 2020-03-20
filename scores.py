@@ -11,3 +11,8 @@ class Stats:
     losses: int = 0
     streak: int = 0
     best_streak: int = 0
+
+    @property
+    def played(self) -> int:
+        """Number of rounds played."""
+        return self.wins + self.losses
