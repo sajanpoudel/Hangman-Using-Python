@@ -16,3 +16,13 @@ class Stats:
     def played(self) -> int:
         """Number of rounds played."""
         return self.wins + self.losses
+
+    def record(self, won: bool) -> None:
+        """Add the result of one round."""
+        if won:
+            self.wins += 1
+            self.streak += 1
+            self.best_streak = max(self.best_streak, self.streak)
+        else:
+            self.losses += 1
+            self.streak = 0
