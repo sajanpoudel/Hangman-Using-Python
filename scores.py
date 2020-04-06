@@ -26,3 +26,7 @@ class Stats:
         else:
             self.losses += 1
             self.streak = 0
+
+    def win_rate(self) -> float:
+        """Share of rounds won between 0 and 1 (0 when nothing was played)."""
+        return self.wins / self.played if self.played else 0.0
