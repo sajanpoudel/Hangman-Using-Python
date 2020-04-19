@@ -30,3 +30,9 @@ class Stats:
     def win_rate(self) -> float:
         """Share of rounds won between 0 and 1 (0 when nothing was played)."""
         return self.wins / self.played if self.played else 0.0
+
+    def summary(self) -> str:
+        """One line for the end of a round."""
+        return "Won {} of {} ({:.0%}), streak {}, best streak {}".format(
+            self.wins, self.played, self.win_rate(), self.streak, self.best_streak
+        )
