@@ -16,3 +16,10 @@ def test_a_win_counts_and_extends_the_streak():
     stats.record(True)
     stats.record(True)
     assert (stats.wins, stats.streak, stats.best_streak) == (2, 2, 2)
+
+
+def test_a_loss_resets_the_streak_but_keeps_the_best():
+    stats = Stats()
+    for result in [True, True, False, True]:
+        stats.record(result)
+    assert (stats.streak, stats.best_streak, stats.losses) == (1, 2, 1)
