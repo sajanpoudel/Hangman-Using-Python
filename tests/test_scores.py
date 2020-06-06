@@ -23,3 +23,7 @@ def test_a_loss_resets_the_streak_but_keeps_the_best():
     for result in [True, True, False, True]:
         stats.record(result)
     assert (stats.streak, stats.best_streak, stats.losses) == (1, 2, 1)
+
+
+def test_win_rate_is_zero_before_any_round():
+    assert Stats().win_rate() == 0.0
