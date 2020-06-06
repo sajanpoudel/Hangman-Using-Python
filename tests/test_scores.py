@@ -27,3 +27,8 @@ def test_a_loss_resets_the_streak_but_keeps_the_best():
 
 def test_win_rate_is_zero_before_any_round():
     assert Stats().win_rate() == 0.0
+
+
+def test_win_rate_is_the_share_of_wins():
+    stats = Stats(wins=3, losses=1)
+    assert stats.win_rate() == 0.75
