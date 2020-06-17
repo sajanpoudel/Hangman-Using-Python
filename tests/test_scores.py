@@ -32,3 +32,8 @@ def test_win_rate_is_zero_before_any_round():
 def test_win_rate_is_the_share_of_wins():
     stats = Stats(wins=3, losses=1)
     assert stats.win_rate() == 0.75
+
+
+def test_summary_mentions_wins_and_streaks():
+    stats = Stats(wins=3, losses=1, streak=2, best_streak=3)
+    assert stats.summary() == "Won 3 of 4 (75%), streak 2, best streak 3"
