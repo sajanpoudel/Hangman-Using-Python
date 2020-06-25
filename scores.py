@@ -1,6 +1,8 @@
 """Win and loss bookkeeping for a session."""
 
-from dataclasses import dataclass
+import json
+from dataclasses import asdict, dataclass
+from pathlib import Path
 
 
 @dataclass
