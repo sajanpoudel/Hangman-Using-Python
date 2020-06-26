@@ -38,3 +38,12 @@ class Stats:
         return "Won {} of {} ({:.0%}), streak {}, best streak {}".format(
             self.wins, self.played, self.win_rate(), self.streak, self.best_streak
         )
+
+
+def load_stats(path: Path) -> Stats:
+    """Read saved stats, starting fresh when the file is missing or unreadable."""
+    try:
+        data = json.loads(Path(path).read_text())
+        return Stats(**{key: int(data[key]) for key in asdict(Stats())})
+    except (OSError, ValueError, KeyError, TypeError):
+        return Stats()
