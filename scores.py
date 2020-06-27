@@ -47,3 +47,10 @@ def load_stats(path: Path) -> Stats:
         return Stats(**{key: int(data[key]) for key in asdict(Stats())})
     except (OSError, ValueError, KeyError, TypeError):
         return Stats()
+
+
+def save_stats(stats: Stats, path: Path) -> None:
+    """Write the stats as JSON, creating the folder when needed."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(asdict(stats), indent=2) + "\n")
