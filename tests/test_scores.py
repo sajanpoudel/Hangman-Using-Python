@@ -37,3 +37,9 @@ def test_win_rate_is_the_share_of_wins():
 def test_summary_mentions_wins_and_streaks():
     stats = Stats(wins=3, losses=1, streak=2, best_streak=3)
     assert stats.summary() == "Won 3 of 4 (75%), streak 2, best streak 3"
+
+
+def test_stats_round_trip_through_a_file(tmp_path):
+    path = tmp_path / "scores.json"
+    save_stats(Stats(wins=5, losses=2, streak=1, best_streak=4), path)
+    assert load_stats(path) == Stats(wins=5, losses=2, streak=1, best_streak=4)
