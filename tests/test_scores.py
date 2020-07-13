@@ -49,3 +49,7 @@ def test_save_creates_missing_folders(tmp_path):
     path = tmp_path / "deep" / "er" / "scores.json"
     save_stats(Stats(wins=1), path)
     assert path.exists()
+
+
+def test_load_of_a_missing_file_gives_empty_stats(tmp_path):
+    assert load_stats(tmp_path / "nothing.json") == Stats()
