@@ -43,3 +43,9 @@ def test_stats_round_trip_through_a_file(tmp_path):
     path = tmp_path / "scores.json"
     save_stats(Stats(wins=5, losses=2, streak=1, best_streak=4), path)
     assert load_stats(path) == Stats(wins=5, losses=2, streak=1, best_streak=4)
+
+
+def test_save_creates_missing_folders(tmp_path):
+    path = tmp_path / "deep" / "er" / "scores.json"
+    save_stats(Stats(wins=1), path)
+    assert path.exists()
