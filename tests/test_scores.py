@@ -53,3 +53,9 @@ def test_save_creates_missing_folders(tmp_path):
 
 def test_load_of_a_missing_file_gives_empty_stats(tmp_path):
     assert load_stats(tmp_path / "nothing.json") == Stats()
+
+
+def test_load_of_corrupted_json_gives_empty_stats(tmp_path):
+    path = tmp_path / "bad.json"
+    path.write_text("{not json")
+    assert load_stats(path) == Stats()
