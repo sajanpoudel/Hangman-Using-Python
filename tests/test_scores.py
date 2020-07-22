@@ -59,3 +59,9 @@ def test_load_of_corrupted_json_gives_empty_stats(tmp_path):
     path = tmp_path / "bad.json"
     path.write_text("{not json")
     assert load_stats(path) == Stats()
+
+
+def test_load_of_incomplete_json_gives_empty_stats(tmp_path):
+    path = tmp_path / "partial.json"
+    path.write_text('{"wins": 3}')
+    assert load_stats(path) == Stats()
