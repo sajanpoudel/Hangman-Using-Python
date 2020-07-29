@@ -92,6 +92,16 @@ def choose_word(words: list[str] = WORDS, rng: random.Random = random) -> str:
     return rng.choice(words)
 
 
+def next_word(deck: list[str], words: list[str], rng: random.Random = random) -> str:
+    """Take a random word out of the deck, refilling it from words once it is empty.
+
+    Every word is played once before any word comes back.
+    """
+    if not deck:
+        deck.extend(words)
+    return deck.pop(rng.randrange(len(deck)))
+
+
 def play_round(
     chosen_word: str,
     ask=input,
@@ -236,11 +246,12 @@ def main(argv: list[str] | None = None) -> None:
     use_color = not args.no_color and sys.stdout.isatty()
     stats_path = Path(args.stats_file) if args.stats_file else default_stats_path()
     stats = load_stats(stats_path)
+    deck: list[str] = []
     print_banner(attempts)
     try:
         while True:
             won = play_round(
-                choose_word(words, rng),
+                next_word(deck, words, rng),
                 attempts=attempts,
                 color=use_color,
                 max_hints=max(0, args.hints),

@@ -14,6 +14,7 @@ from hangman import (
     hidden_positions,
     is_valid_guess,
     new_board,
+    next_word,
     normalize_guess,
     pick_hint,
     play_round,
@@ -244,3 +245,19 @@ def test_zero_hints_turns_the_hint_command_off():
     ask, say, output = fake_io(["?", "a"])
     play_round("a", ask, say, attempts=3, max_hints=0)
     assert any("all 0 hints" in str(line) for line in output)
+
+
+def test_next_word_plays_every_word_before_repeating():
+    words = ["cat", "dog", "owl", "fox"]
+    deck = []
+    rng = random.Random(3)
+    first_round = [next_word(deck, words, rng) for _ in words]
+    assert sorted(first_round) == sorted(words)
+    assert next_word(deck, words, rng) in words
+
+
+def test_next_word_leaves_the_word_list_alone():
+    words = ["cat", "dog"]
+    deck = []
+    next_word(deck, words, random.Random(1))
+    assert words == ["cat", "dog"]
