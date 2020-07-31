@@ -64,6 +64,11 @@ def attempts_for(difficulty: str) -> int:
     return DIFFICULTIES.get(difficulty.lower(), DIFFICULTIES["normal"])
 
 
+def hidden_positions(word: list[str], board: list[str]) -> list[int]:
+    """Positions on the board that are still blank."""
+    return [i for i, shown in enumerate(board) if shown == BLANK]
+
+
 def new_board(word: str | list[str]) -> list[str]:
     """Return a board of blanks as long as the word."""
     return [BLANK] * len(word)
