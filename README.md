@@ -73,7 +73,7 @@ Type `?` to reveal a random hidden letter. A hint costs one attempt and is not a
 
 ### Statistics
 
-Wins, losses and streaks are saved to `~/.hangman_stats.json` after every round. Use `--stats-file PATH` to keep them somewhere else.
+Wins, losses and streaks are saved to `~/.hangman_stats.json` after every round. Use `--stats-file PATH` to keep them somewhere else, and `--show-stats` to print them without playing.
 
 ### Repeatable games
 

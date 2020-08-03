@@ -168,6 +168,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-length", type=int, help="longest word to play")
     parser.add_argument("--seed", type=int, help="seed for the random word choice")
     parser.add_argument("--stats-file", help="where wins and losses are kept between sessions")
+    parser.add_argument(
+        "--show-stats", action="store_true", help="print the saved results and exit"
+    )
     parser.add_argument("--no-color", action="store_true", help="turn off coloured output")
     return parser
 
@@ -203,6 +206,10 @@ def resolve_words(args: argparse.Namespace) -> list[str]:
 def main(argv: list[str] | None = None) -> None:
     """Play rounds until the player decides to stop."""
     args = build_parser().parse_args(argv)
+    if args.show_stats:
+        stats_path = Path(args.stats_file) if args.stats_file else default_stats_path()
+        print(load_stats(stats_path).summary())
+        return
     rng = random.Random(args.seed) if args.seed is not None else random
     attempts = resolve_attempts(args)
     words = resolve_words(args)

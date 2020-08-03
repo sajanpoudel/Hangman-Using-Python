@@ -3,7 +3,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from hangman import build_parser, filter_by_length, resolve_attempts, resolve_words
+from hangman import build_parser, filter_by_length, main, resolve_attempts, resolve_words
 from words import CATEGORIES, WORDS
 
 
@@ -100,3 +100,10 @@ def test_resolve_words_applies_the_length_limits():
 def test_resolve_words_falls_back_when_no_word_fits():
     args = parse("--min-length", "40")
     assert resolve_words(args) == WORDS
+
+
+def test_show_stats_prints_the_saved_results_without_playing(tmp_path, capsys):
+    stats_file = tmp_path / "stats.json"
+    stats_file.write_text('{"wins": 3, "losses": 1, "streak": 2, "best_streak": 2}')
+    main(["--show-stats", "--stats-file", str(stats_file)])
+    assert "Won 3 of 4 (75%)" in capsys.readouterr().out
