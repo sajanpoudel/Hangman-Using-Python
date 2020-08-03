@@ -69,6 +69,14 @@ def hidden_positions(word: list[str], board: list[str]) -> list[int]:
     return [i for i, shown in enumerate(board) if shown == BLANK]
 
 
+def pick_hint(word: list[str], board: list[str], rng: random.Random = random) -> str | None:
+    """Choose a letter that is still hidden, or None when everything is shown."""
+    positions = hidden_positions(word, board)
+    if not positions:
+        return None
+    return word[rng.choice(positions)]
+
+
 def new_board(word: str | list[str]) -> list[str]:
     """Return a board of blanks as long as the word."""
     return [BLANK] * len(word)
