@@ -7,6 +7,8 @@ import random
 
 from hangman import (
     BLANK,
+    hidden_positions,
+    pick_hint,
     DIFFICULTIES,
     attempts_for,
     WORDS,
