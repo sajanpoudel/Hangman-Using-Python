@@ -172,3 +172,7 @@ def test_attempts_for_ignores_case_and_defaults_to_normal():
 
 def test_harder_levels_allow_fewer_attempts():
     assert DIFFICULTIES["easy"] > DIFFICULTIES["normal"] > DIFFICULTIES["hard"]
+
+
+def test_hidden_positions_lists_the_blanks():
+    assert hidden_positions(list("cat"), ["c", BLANK, BLANK]) == [1, 2]
