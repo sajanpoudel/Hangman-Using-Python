@@ -176,3 +176,7 @@ def test_harder_levels_allow_fewer_attempts():
 
 def test_hidden_positions_lists_the_blanks():
     assert hidden_positions(list("cat"), ["c", BLANK, BLANK]) == [1, 2]
+
+
+def test_hidden_positions_is_empty_when_solved():
+    assert hidden_positions(list("cat"), list("cat")) == []
