@@ -180,3 +180,8 @@ def test_hidden_positions_lists_the_blanks():
 
 def test_hidden_positions_is_empty_when_solved():
     assert hidden_positions(list("cat"), list("cat")) == []
+
+
+def test_pick_hint_returns_a_hidden_letter():
+    hint = pick_hint(list("cat"), ["c", BLANK, "t"], random.Random(1))
+    assert hint == "a"
