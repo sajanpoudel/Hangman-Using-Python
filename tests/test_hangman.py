@@ -185,3 +185,7 @@ def test_hidden_positions_is_empty_when_solved():
 def test_pick_hint_returns_a_hidden_letter():
     hint = pick_hint(list("cat"), ["c", BLANK, "t"], random.Random(1))
     assert hint == "a"
+
+
+def test_pick_hint_returns_none_when_nothing_is_hidden():
+    assert pick_hint(list("cat"), list("cat")) is None
