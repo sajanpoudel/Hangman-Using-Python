@@ -31,6 +31,7 @@ def print_banner() -> None:
 
 MAX_ATTEMPTS = 3
 BLANK = "_"
+HINT_COMMAND = "?"
 
 # Attempts allowed for each difficulty level.
 DIFFICULTIES = {"easy": 8, "normal": 6, "hard": 3}
