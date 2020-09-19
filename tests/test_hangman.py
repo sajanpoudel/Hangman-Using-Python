@@ -189,3 +189,9 @@ def test_pick_hint_returns_a_hidden_letter():
 
 def test_pick_hint_returns_none_when_nothing_is_hidden():
     assert pick_hint(list("cat"), list("cat")) is None
+
+
+def test_a_hint_costs_one_attempt_and_reveals_a_letter():
+    ask, say, output = fake_io(["?", "x", "y", "c", "a", "t"])
+    assert play_round("cat", ask, say, attempts=4) is True
+    assert any("Hint:" in str(line) for line in output)
