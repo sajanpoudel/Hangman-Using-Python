@@ -104,6 +104,18 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
     while attempts_left > 0 and board != word:
         guess = normalize_guess(ask("\nPLEASE GUESS THE WORD > "))
 
+        if guess == HINT_COMMAND:
+            if attempts_left <= 1:
+                say("No hints on your last attempt.")
+                continue
+            hint = pick_hint(word, board)
+            attempts_left -= 1
+            guessed.add(hint)
+            reveal_letter(hint, word, board)
+            say("Hint: '{}' ({} left)".format(hint, attempts_left))
+            say(board)
+            continue
+
         if not is_valid_guess(guess):
             say("Please enter a single letter.")
             continue
