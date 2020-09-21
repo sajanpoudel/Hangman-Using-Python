@@ -195,3 +195,9 @@ def test_a_hint_costs_one_attempt_and_reveals_a_letter():
     ask, say, output = fake_io(["?", "x", "y", "c", "a", "t"])
     assert play_round("cat", ask, say, attempts=4) is True
     assert any("Hint:" in str(line) for line in output)
+
+
+def test_no_hint_is_given_on_the_last_attempt():
+    ask, say, output = fake_io(["?", "x"])
+    assert play_round("cat", ask, say, attempts=1) is False
+    assert any("No hints" in str(line) for line in output)
