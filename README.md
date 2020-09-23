@@ -57,7 +57,7 @@ python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
 
 ### Categories
 
-`--category` accepts `animals`, `places`, `nature` or `school`. Any other name uses the full list. Use `--words-file words.txt` to play with your own words, one per line. Lines with digits or symbols are ignored.
+`--category` accepts `animals`, `places`, `nature`, `school`, `technology` or `food`. Any other name uses the full list. Use `--words-file words.txt` to play with your own words, one per line. Lines with digits or symbols are ignored.
 
 ### Guessing the whole word
 

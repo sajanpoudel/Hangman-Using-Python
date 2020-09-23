@@ -189,7 +189,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--attempts", type=int, help="wrong guesses allowed (overrides the difficulty)"
     )
-    parser.add_argument("--category", help="animals, places, nature or school")
+    parser.add_argument("--category", help="animals, places, nature, school, technology or food")
     parser.add_argument("--words-file", help="text file with one word per line")
     parser.add_argument(
         "--hints", type=int, default=MAX_HINTS, help="hints allowed per round (default 2)"
