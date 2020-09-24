@@ -131,6 +131,8 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
             say(gallows(attempts - attempts_left, attempts))
 
         say(board)
+        if guessed:
+            say("Tried: {}".format(" ".join(sorted(guessed))))
 
     if board == word:
         say("YOUR GUESS {} WAS RIGHT: ".format(chosen_word))
