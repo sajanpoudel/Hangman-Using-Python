@@ -201,3 +201,9 @@ def test_no_hint_is_given_on_the_last_attempt():
     ask, say, output = fake_io(["?", "x"])
     assert play_round("cat", ask, say, attempts=1) is False
     assert any("No hints" in str(line) for line in output)
+
+
+def test_tried_letters_are_listed_in_order():
+    ask, say, output = fake_io(["t", "a", "x", "c"])
+    play_round("cat", ask, say)
+    assert "Tried: a c t x" in [str(line) for line in output]
