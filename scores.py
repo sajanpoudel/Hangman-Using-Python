@@ -35,9 +35,7 @@ class Stats:
 
     def summary(self) -> str:
         """One line for the end of a round."""
-        return "Won {} of {} ({:.0%}), streak {}, best streak {}".format(
-            self.wins, self.played, self.win_rate(), self.streak, self.best_streak
-        )
+        return f"Won {self.wins} of {self.played} ({self.win_rate():.0%}), streak {self.streak}, best streak {self.best_streak}"
 
 
 def default_stats_path() -> Path:

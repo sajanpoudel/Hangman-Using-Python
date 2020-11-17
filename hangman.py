@@ -2,12 +2,13 @@
 
 import argparse
 import random
+import sys
 from pathlib import Path
 
+from colors import paint
 from gallows import gallows
 from scores import default_stats_path, load_stats, save_stats
 from words import WORDS, load_words, words_for
-
 
 BANNER_WIDTH = 103
 
@@ -23,7 +24,7 @@ def banner_lines(width: int = BANNER_WIDTH) -> list[str]:
 def print_banner(attempts: int = 3) -> None:
     """Show the welcome message and the rules of the game."""
     print("\n".join(banner_lines()))
-    print("\n\nYOU HAVE TO GUESS THE WORDS IN {} attempts".format(attempts))
+    print(f"\n\nYOU HAVE TO GUESS THE WORDS IN {attempts} attempts")
 
 
 MAX_ATTEMPTS = 3
@@ -85,7 +86,9 @@ def choose_word(words: list[str] = WORDS, rng: random.Random = random) -> str:
     return rng.choice(words)
 
 
-def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEMPTS) -> bool:
+def play_round(
+    chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEMPTS, color: bool = False
+) -> bool:
     """Run one round for chosen_word and return True when the player wins.
 
     ask and say can be replaced, which makes the round testable without a keyboard.
@@ -109,7 +112,7 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
             attempts_left -= 1
             guessed.add(hint)
             reveal_letter(hint, word, board)
-            say("Hint: '{}' ({} left)".format(hint, attempts_left))
+            say(f"Hint: '{hint}' ({attempts_left} left)")
             say(board)
             continue
 
@@ -118,13 +121,13 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
             continue
 
         if guess in guessed:
-            say("You already tried '{}'.".format(guess))
+            say(f"You already tried '{guess}'.")
             continue
         guessed.add(guess)
 
         if reveal_letter(guess, word, board) == 0:
             attempts_left -= 1
-            say("Wrong Word. Try Again ({} left)\n".format(attempts_left))
+            say(paint(f"Wrong Word. Try Again ({attempts_left} left)\n", "red", color))
             say(gallows(attempts - attempts_left, attempts))
 
         say(board)
@@ -132,9 +135,9 @@ def play_round(chosen_word: str, ask=input, say=print, attempts: int = MAX_ATTEM
             say("Tried: {}".format(" ".join(sorted(guessed))))
 
     if board == word:
-        say("YOUR GUESS {} WAS RIGHT: ".format(chosen_word))
+        say(paint(f"YOUR GUESS {chosen_word} WAS RIGHT: ", "green", color))
         return True
-    say("NEXT TRY!!! \n the correct answer was: {}".format(chosen_word))
+    say(paint(f"NEXT TRY!!! \n the correct answer was: {chosen_word}", "yellow", color))
     return False
 
 
@@ -147,7 +150,9 @@ def build_parser() -> argparse.ArgumentParser:
     """Command line options of the game."""
     parser = argparse.ArgumentParser(description="Play Hangman in the terminal.")
     parser.add_argument("--difficulty", default="normal", help="easy, normal or hard")
-    parser.add_argument("--attempts", type=int, help="wrong guesses allowed (overrides the difficulty)")
+    parser.add_argument(
+        "--attempts", type=int, help="wrong guesses allowed (overrides the difficulty)"
+    )
     parser.add_argument("--category", help="animals, places, nature or school")
     parser.add_argument("--words-file", help="text file with one word per line")
     parser.add_argument("--seed", type=int, help="seed for the random word choice")
@@ -177,11 +182,12 @@ def main(argv: list[str] | None = None) -> None:
     rng = random.Random(args.seed) if args.seed is not None else random
     attempts = resolve_attempts(args)
     words = resolve_words(args)
+    use_color = not args.no_color and sys.stdout.isatty()
     stats_path = Path(args.stats_file) if args.stats_file else default_stats_path()
     stats = load_stats(stats_path)
     print_banner(attempts)
     while True:
-        won = play_round(choose_word(words, rng), attempts=attempts)
+        won = play_round(choose_word(words, rng), attempts=attempts, color=use_color)
         stats.record(won)
         save_stats(stats, stats_path)
         print(stats.summary())
