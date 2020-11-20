@@ -143,3 +143,17 @@ def words_for(category: str | None) -> list[str]:
     if category and category.lower() in CATEGORIES:
         return CATEGORIES[category.lower()]
     return WORDS
+
+
+def load_words(path: str) -> list[str]:
+    """Read one word per line, keeping only lowercase alphabetic words.
+
+    Blank lines and words with digits or symbols are skipped.
+    """
+    words = []
+    with open(path, encoding="utf-8") as handle:
+        for line in handle:
+            word = line.strip().lower()
+            if word.isalpha():
+                words.append(word)
+    return words
