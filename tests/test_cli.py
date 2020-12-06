@@ -116,3 +116,10 @@ def test_main_says_goodbye_when_input_ends(tmp_path, capsys, monkeypatch):
     monkeypatch.setattr("hangman.play_round", end_of_input)
     main(["--stats-file", str(tmp_path / "stats.json"), "--seed", "1"])
     assert "Goodbye!" in capsys.readouterr().out
+
+
+def test_list_categories_prints_every_category(capsys):
+    main(["--list-categories"])
+    out = capsys.readouterr().out
+    for name in CATEGORIES:
+        assert f"{name} (" in out

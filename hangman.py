@@ -8,7 +8,7 @@ from pathlib import Path
 from colors import paint
 from gallows import gallows
 from scores import default_stats_path, load_stats, save_stats
-from words import WORDS, load_words, words_for
+from words import CATEGORIES, WORDS, load_words, words_for
 
 BANNER_WIDTH = 103
 
@@ -199,6 +199,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--seed", type=int, help="seed for the random word choice")
     parser.add_argument("--stats-file", help="where wins and losses are kept between sessions")
     parser.add_argument(
+        "--list-categories", action="store_true", help="print the categories and exit"
+    )
+    parser.add_argument(
         "--show-stats", action="store_true", help="print the saved results and exit"
     )
     parser.add_argument("--no-color", action="store_true", help="turn off coloured output")
@@ -236,6 +239,10 @@ def resolve_words(args: argparse.Namespace) -> list[str]:
 def main(argv: list[str] | None = None) -> None:
     """Play rounds until the player decides to stop."""
     args = build_parser().parse_args(argv)
+    if args.list_categories:
+        for name, category_words in sorted(CATEGORIES.items()):
+            print(f"{name} ({len(category_words)} words)")
+        return
     if args.show_stats:
         stats_path = Path(args.stats_file) if args.stats_file else default_stats_path()
         print(load_stats(stats_path).summary())
