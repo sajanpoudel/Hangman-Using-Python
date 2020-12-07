@@ -3,7 +3,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from words import CATEGORIES, WORDS, words_for
+from words import CATEGORIES, WORDS, load_words, words_for
 
 
 def test_words_for_a_known_category():
