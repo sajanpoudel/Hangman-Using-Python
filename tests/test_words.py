@@ -33,3 +33,9 @@ def test_every_word_is_lowercase_letters():
 def test_categories_have_no_duplicates():
     for words in CATEGORIES.values():
         assert len(words) == len(set(words))
+
+
+def test_load_words_reads_one_word_per_line(tmp_path):
+    path = tmp_path / "words.txt"
+    path.write_text("apple\nbanana\n")
+    assert load_words(str(path)) == ["apple", "banana"]
