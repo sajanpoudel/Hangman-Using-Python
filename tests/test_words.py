@@ -45,3 +45,9 @@ def test_load_words_skips_blank_and_invalid_lines(tmp_path):
     path = tmp_path / "words.txt"
     path.write_text("apple\n\n  \nb4d\nkiwi-fruit\nPear\n")
     assert load_words(str(path)) == ["apple", "pear"]
+
+
+def test_load_words_of_an_empty_file_is_empty(tmp_path):
+    path = tmp_path / "words.txt"
+    path.write_text("")
+    assert load_words(str(path)) == []
