@@ -1,5 +1,6 @@
 """A small command line Hangman game."""
 
+import argparse
 import random
 
 from gallows import gallows
