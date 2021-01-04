@@ -147,6 +147,13 @@ def wants_another_round(ask=input) -> bool:
     return ask("\nPlay again? (y/n) > ").strip().lower().startswith("y")
 
 
+def build_parser() -> argparse.ArgumentParser:
+    """Command line options of the game."""
+    parser = argparse.ArgumentParser(description="Play Hangman in the terminal.")
+    parser.add_argument("--difficulty", default="normal", help="easy, normal or hard")
+    return parser
+
+
 def main():
     """Play rounds until the player decides to stop."""
     while True:
