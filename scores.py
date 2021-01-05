@@ -13,14 +13,16 @@ class Stats:
     losses: int = 0
     streak: int = 0
     best_streak: int = 0
+    points: int = 0
 
     @property
     def played(self) -> int:
         """Number of rounds played."""
         return self.wins + self.losses
 
-    def record(self, won: bool) -> None:
-        """Add the result of one round."""
+    def record(self, won: bool, points: int = 0) -> None:
+        """Add the result of one round and the points it earned."""
+        self.points += points
         if won:
             self.wins += 1
             self.streak += 1
@@ -38,6 +40,18 @@ class Stats:
         return f"Won {self.wins} of {self.played} ({self.win_rate():.0%}), streak {self.streak}, best streak {self.best_streak}"
 
 
+def round_points(won: bool, word: str, attempts: int) -> int:
+    """Ten points per letter of a guessed word, doubled or tripled on the harder levels.
+
+    Three attempts or fewer count triple, up to six attempts double, more than that single.
+    A lost round earns nothing.
+    """
+    if not won:
+        return 0
+    multiplier = 3 if attempts <= 3 else 2 if attempts <= 6 else 1
+    return len(word) * 10 * multiplier
+
+
 def default_stats_path() -> Path:
     """Where the stats are kept unless --stats-file says otherwise."""
     return Path.home() / ".hangman_stats.json"
@@ -47,7 +61,9 @@ def load_stats(path: Path) -> Stats:
     """Read saved stats, starting fresh when the file is missing or unreadable."""
     try:
         data = json.loads(Path(path).read_text())
-        return Stats(**{key: int(data[key]) for key in asdict(Stats())})
+        # points came later, so files without it are still valid
+        required = {key: int(data[key]) for key in asdict(Stats()) if key != "points"}
+        return Stats(**required, points=int(data.get("points", 0)))
     except (OSError, ValueError, KeyError, TypeError):
         return Stats()
 
