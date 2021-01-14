@@ -153,6 +153,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--difficulty", default="normal", help="easy, normal or hard")
     parser.add_argument("--attempts", type=int, help="wrong guesses allowed (overrides the difficulty)")
     parser.add_argument("--category", help="animals, places, nature or school")
+    parser.add_argument("--words-file", help="text file with one word per line")
     return parser
 
 
