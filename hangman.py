@@ -152,6 +152,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Play Hangman in the terminal.")
     parser.add_argument("--difficulty", default="normal", help="easy, normal or hard")
     parser.add_argument("--attempts", type=int, help="wrong guesses allowed (overrides the difficulty)")
+    parser.add_argument("--category", help="animals, places, nature or school")
     return parser
 
 
