@@ -18,3 +18,8 @@ def test_defaults():
     assert args.words_file is None
     assert args.seed is None
     assert args.no_color is False
+
+
+def test_difficulty_and_attempts():
+    args = parse("--difficulty", "hard", "--attempts", "4")
+    assert (args.difficulty, args.attempts) == ("hard", 4)
