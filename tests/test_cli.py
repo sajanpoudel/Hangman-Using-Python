@@ -23,3 +23,8 @@ def test_defaults():
 def test_difficulty_and_attempts():
     args = parse("--difficulty", "hard", "--attempts", "4")
     assert (args.difficulty, args.attempts) == ("hard", 4)
+
+
+def test_category_and_words_file():
+    args = parse("--category", "animals", "--words-file", "w.txt")
+    assert (args.category, args.words_file) == ("animals", "w.txt")
