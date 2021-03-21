@@ -32,3 +32,7 @@ def test_category_and_words_file():
 
 def test_seed_is_an_integer():
     assert parse("--seed", "42").seed == 42
+
+
+def test_no_color_flag():
+    assert parse("--no-color").no_color is True
