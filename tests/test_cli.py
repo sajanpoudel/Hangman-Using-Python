@@ -28,3 +28,7 @@ def test_difficulty_and_attempts():
 def test_category_and_words_file():
     args = parse("--category", "animals", "--words-file", "w.txt")
     assert (args.category, args.words_file) == ("animals", "w.txt")
+
+
+def test_seed_is_an_integer():
+    assert parse("--seed", "42").seed == 42
