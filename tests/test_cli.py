@@ -36,3 +36,12 @@ def test_seed_is_an_integer():
 
 def test_no_color_flag():
     assert parse("--no-color").no_color is True
+
+
+def test_a_non_numeric_attempts_value_is_rejected(capsys):
+    try:
+        parse("--attempts", "many")
+    except SystemExit as error:
+        assert error.code == 2
+    else:
+        raise AssertionError("expected the parser to exit")
