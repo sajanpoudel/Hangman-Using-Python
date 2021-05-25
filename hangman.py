@@ -159,6 +159,12 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def resolve_attempts(args: argparse.Namespace) -> int:
+    """--attempts wins over --difficulty, and the result is never below one."""
+    attempts = args.attempts if args.attempts is not None else attempts_for(args.difficulty)
+    return max(1, attempts)
+
+
 def main():
     """Play rounds until the player decides to stop."""
     while True:
