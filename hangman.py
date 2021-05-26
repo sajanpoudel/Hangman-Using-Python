@@ -165,6 +165,15 @@ def resolve_attempts(args: argparse.Namespace) -> int:
     return max(1, attempts)
 
 
+def resolve_words(args: argparse.Namespace) -> list[str]:
+    """Words from --words-file, else from --category, else the full list."""
+    if args.words_file:
+        words = load_words(args.words_file)
+        if words:
+            return words
+    return words_for(args.category)
+
+
 def main():
     """Play rounds until the player decides to stop."""
     while True:
