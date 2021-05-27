@@ -4,7 +4,7 @@ import argparse
 import random
 
 from gallows import gallows
-from words import WORDS
+from words import WORDS, load_words, words_for
 
 
 def print_banner() -> None:
