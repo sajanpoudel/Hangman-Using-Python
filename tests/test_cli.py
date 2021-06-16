@@ -3,7 +3,8 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from hangman import build_parser
+from hangman import build_parser, resolve_attempts, resolve_words
+from words import CATEGORIES, WORDS
 
 
 def parse(*args):
