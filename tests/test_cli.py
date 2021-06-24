@@ -46,3 +46,7 @@ def test_a_non_numeric_attempts_value_is_rejected(capsys):
         assert error.code == 2
     else:
         raise AssertionError("expected the parser to exit")
+
+
+def test_attempts_come_from_the_difficulty():
+    assert resolve_attempts(parse("--difficulty", "easy")) == 8
