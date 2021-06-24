@@ -50,3 +50,7 @@ def test_a_non_numeric_attempts_value_is_rejected(capsys):
 
 def test_attempts_come_from_the_difficulty():
     assert resolve_attempts(parse("--difficulty", "easy")) == 8
+
+
+def test_explicit_attempts_override_the_difficulty():
+    assert resolve_attempts(parse("--difficulty", "easy", "--attempts", "2")) == 2
