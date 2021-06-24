@@ -54,3 +54,8 @@ def test_attempts_come_from_the_difficulty():
 
 def test_explicit_attempts_override_the_difficulty():
     assert resolve_attempts(parse("--difficulty", "easy", "--attempts", "2")) == 2
+
+
+def test_attempts_are_at_least_one():
+    assert resolve_attempts(parse("--attempts", "0")) == 1
+    assert resolve_attempts(parse("--attempts", "-5")) == 1
