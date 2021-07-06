@@ -59,3 +59,7 @@ def test_explicit_attempts_override_the_difficulty():
 def test_attempts_are_at_least_one():
     assert resolve_attempts(parse("--attempts", "0")) == 1
     assert resolve_attempts(parse("--attempts", "-5")) == 1
+
+
+def test_words_default_to_the_full_list():
+    assert resolve_words(parse()) == WORDS
