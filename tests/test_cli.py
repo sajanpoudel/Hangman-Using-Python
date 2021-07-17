@@ -67,3 +67,9 @@ def test_words_default_to_the_full_list():
 
 def test_words_follow_the_category():
     assert resolve_words(parse("--category", "places")) == CATEGORIES["places"]
+
+
+def test_words_come_from_the_file_when_it_has_words(tmp_path):
+    path = tmp_path / "w.txt"
+    path.write_text("alpha\nbeta\n")
+    assert resolve_words(parse("--words-file", str(path))) == ["alpha", "beta"]
