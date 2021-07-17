@@ -73,3 +73,9 @@ def test_words_come_from_the_file_when_it_has_words(tmp_path):
     path = tmp_path / "w.txt"
     path.write_text("alpha\nbeta\n")
     assert resolve_words(parse("--words-file", str(path))) == ["alpha", "beta"]
+
+
+def test_an_empty_word_file_falls_back_to_the_category(tmp_path):
+    path = tmp_path / "w.txt"
+    path.write_text("\n123\n")
+    assert resolve_words(parse("--words-file", str(path), "--category", "animals")) == CATEGORIES["animals"]
