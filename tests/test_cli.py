@@ -63,3 +63,7 @@ def test_attempts_are_at_least_one():
 
 def test_words_default_to_the_full_list():
     assert resolve_words(parse()) == WORDS
+
+
+def test_words_follow_the_category():
+    assert resolve_words(parse("--category", "places")) == CATEGORIES["places"]
