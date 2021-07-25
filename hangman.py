@@ -174,10 +174,17 @@ def resolve_words(args: argparse.Namespace) -> list[str]:
     return words_for(args.category)
 
 
-def main():
+def main(argv: list[str] | None = None) -> None:
     """Play rounds until the player decides to stop."""
+    args = build_parser().parse_args(argv)
+    rng = random.Random(args.seed) if args.seed is not None else random
+    attempts = resolve_attempts(args)
+    words = resolve_words(args)
+    stats = Stats()
     while True:
-        play_round(choose_word())
+        won = play_round(choose_word(words, rng), attempts=attempts)
+        stats.record(won)
+        print(stats.summary())
         if not wants_another_round():
             break
 
