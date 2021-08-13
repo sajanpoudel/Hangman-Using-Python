@@ -4,6 +4,7 @@ import argparse
 import random
 
 from gallows import gallows
+from scores import Stats
 from words import WORDS, load_words, words_for
 
 
