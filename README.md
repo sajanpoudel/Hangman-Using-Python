@@ -35,3 +35,11 @@ pytest
 - After a round you can choose to play again.
 
 By Sajan Poudel.
+
+## Options
+
+```
+python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
+                   [--category NAME] [--words-file PATH]
+                   [--seed N] [--no-color]
+```
