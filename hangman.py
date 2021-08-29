@@ -7,7 +7,7 @@ from pathlib import Path
 
 from colors import paint
 from gallows import gallows
-from scores import default_stats_path, load_stats, save_stats
+from scores import default_stats_path, load_stats, round_points, save_stats
 from words import CATEGORIES, WORDS, load_words, words_for
 
 BANNER_WIDTH = 103
@@ -257,15 +257,13 @@ def main(argv: list[str] | None = None) -> None:
     print_banner(attempts)
     try:
         while True:
-            won = play_round(
-                next_word(deck, words, rng),
-                attempts=attempts,
-                color=use_color,
-                max_hints=max(0, args.hints),
-            )
-            stats.record(won)
+            word = next_word(deck, words, rng)
+            won = play_round(word, attempts=attempts, color=use_color, max_hints=max(0, args.hints))
+            earned = round_points(won, word, attempts)
+            stats.record(won, points=earned)
             save_stats(stats, stats_path)
             print(stats.summary())
+            print(f"Points: +{earned}, total {stats.points}")
             if not wants_another_round():
                 break
     except (EOFError, KeyboardInterrupt):
