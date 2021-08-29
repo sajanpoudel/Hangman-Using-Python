@@ -43,3 +43,13 @@ python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
                    [--category NAME] [--words-file PATH]
                    [--seed N] [--no-color]
 ```
+
+### Difficulty
+
+| Level | Wrong guesses allowed |
+| --- | --- |
+| easy | 8 |
+| normal | 6 |
+| hard | 3 |
+
+`--attempts N` overrides the level and is never lower than 1.
