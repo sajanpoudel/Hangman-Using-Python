@@ -53,3 +53,7 @@ python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
 | hard | 3 |
 
 `--attempts N` overrides the level and is never lower than 1.
+
+### Categories
+
+`--category` accepts `animals`, `places`, `nature` or `school`. Any other name uses the full list. Use `--words-file words.txt` to play with your own words, one per line. Lines with digits or symbols are ignored.
