@@ -61,3 +61,7 @@ python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
 ### Hints
 
 Type `?` to reveal a random hidden letter. A hint costs one attempt and is not available on your last attempt.
+
+### Repeatable games
+
+`--seed 7` always starts with the same word, which is handy when you want to show the game to someone else.
