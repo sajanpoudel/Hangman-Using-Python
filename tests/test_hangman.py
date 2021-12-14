@@ -7,15 +7,15 @@ import random
 
 from hangman import (
     BLANK,
-    hidden_positions,
-    pick_hint,
     DIFFICULTIES,
-    attempts_for,
     WORDS,
+    attempts_for,
     choose_word,
+    hidden_positions,
     is_valid_guess,
     new_board,
     normalize_guess,
+    pick_hint,
     play_round,
     reveal_letter,
     wants_another_round,
@@ -110,9 +110,20 @@ def test_upper_case_guesses_count():
 
 
 def test_invalid_guesses_do_not_use_up_attempts():
-    ask, say, output = fake_io(["", "12", "ab", "c", "a", "t"])
+    ask, say, output = fake_io(["", "12", "!", "c", "a", "t"])
     assert play_round("cat", ask, say) is True
     assert sum("single letter" in str(line) for line in output) == 3
+
+
+def test_guessing_the_whole_word_wins_the_round():
+    ask, say, _ = fake_io(["Cat"])
+    assert play_round("cat", ask, say) is True
+
+
+def test_a_wrong_whole_word_costs_an_attempt():
+    ask, say, output = fake_io(["dog", "cow", "pig"])
+    assert play_round("cat", ask, say) is False
+    assert any("not the word" in str(line) for line in output)
 
 
 def test_repeating_a_wrong_letter_is_not_charged_twice():

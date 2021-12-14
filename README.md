@@ -58,9 +58,17 @@ python3 hangman.py [--difficulty easy|normal|hard] [--attempts N]
 
 `--category` accepts `animals`, `places`, `nature` or `school`. Any other name uses the full list. Use `--words-file words.txt` to play with your own words, one per line. Lines with digits or symbols are ignored.
 
+### Guessing the whole word
+
+Type the full word instead of a letter. A correct guess wins the round at once, a wrong one costs an attempt.
+
 ### Hints
 
 Type `?` to reveal a random hidden letter. A hint costs one attempt and is not available on your last attempt.
+
+### Statistics
+
+Wins, losses and streaks are saved to `~/.hangman_stats.json` after every round. Use `--stats-file PATH` to keep them somewhere else.
 
 ### Repeatable games
 

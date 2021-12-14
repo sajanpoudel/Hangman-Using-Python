@@ -116,8 +116,17 @@ def play_round(
             say(board)
             continue
 
+        if len(guess) > 1 and guess.isalpha():
+            if guess == chosen_word:
+                board[:] = word
+                break
+            attempts_left -= 1
+            say(paint(f"'{guess}' is not the word ({attempts_left} left)\n", "red", color))
+            say(gallows(attempts - attempts_left, attempts))
+            continue
+
         if not is_valid_guess(guess):
-            say("Please enter a single letter.")
+            say("Please enter a single letter or the whole word.")
             continue
 
         if guess in guessed:
