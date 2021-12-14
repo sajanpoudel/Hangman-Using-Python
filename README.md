@@ -71,6 +71,10 @@ Type the full word instead of a letter. A correct guess wins the round at once, 
 
 Type `?` to reveal a random hidden letter. A hint costs one attempt and is not available on your last attempt.
 
+### Points
+
+A won round earns ten points per letter, doubled with up to six attempts and tripled with three or fewer. The total is part of the saved statistics.
+
 ### Statistics
 
 Wins, losses and streaks are saved to `~/.hangman_stats.json` after every round. Use `--stats-file PATH` to keep them somewhere else, and `--show-stats` to print them without playing.
