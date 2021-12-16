@@ -1,0 +1,8 @@
+[project]
+name = "hangman"
+version = "0.2.0"
+description = "A small command line Hangman game"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
