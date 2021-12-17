@@ -65,3 +65,9 @@ Type `?` to reveal a random hidden letter. A hint costs one attempt and is not a
 ### Repeatable games
 
 `--seed 7` always starts with the same word, which is handy when you want to show the game to someone else.
+
+## More documentation
+
+- [Architecture](docs/architecture.md)
+- [Testing](docs/testing.md)
+- [Changelog](docs/changelog.md)
